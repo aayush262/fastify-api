@@ -12,21 +12,22 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "fastify": "^3.27.0"
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "fastify": "^3.27.0",
+    "nodemon": "^2.0.15",
+    "pg-promise": "^10.11.1"
   },
   "devDependencies": {
     "eslint": "^8.7.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.7",
     "pino-pretty": "^7.5.0",
     "prettier": "2.5.1",
     "tap": "^15.1.6"
-  },
-  "eslintIgnore":[
-    "*.test.js",
-    "*.spec.js"
-  ]
+  }
 }

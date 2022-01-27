@@ -1,0 +1,37 @@
+containers:
+  my-container:
+    image: alpine:3.11.3
+  build-fastify-env:
+    image: node:16.13.2
+    volumes:
+      - local: .
+        container: /code
+        options: cached
+      - type: cache
+        name: node_modules
+        container: /code/node_modules
+    working_directory: /code
+
+tasks:
+  say-hello:
+    description: Say hello to the nice person reading the Batect documentation
+    run:
+      container: my-container
+      command: echo 'Hello world!'
+  #tasks for running the app
+  #install dependecny inside docker container (one time activity)
+  install-dep:
+    description: Install dependencies needed to build the application
+    run:
+      container: build-fastify-env
+      command: npm install
+  #task for running the app
+  start-server:
+    description: Run the application
+    run:
+      environment:
+        PORT: 8080
+      container: build-fastify-env
+      command: npm run start
+      ports:
+        - 5000:8080
