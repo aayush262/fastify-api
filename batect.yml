@@ -1,6 +1,7 @@
 containers:
   my-container:
     image: alpine:3.11.3
+  #main fastify container
   build-fastify-env:
     image: node:16.13.2
     volumes:
@@ -11,6 +12,27 @@ containers:
         name: node_modules
         container: /code/node_modules
     working_directory: /code
+  #postgres sql container
+  db:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - local: ./postgres-data
+        container: /var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: app
+      POSTGRES_DB: db
+  #test db container
+  db-test:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: app
+      POSTGRES_DB: db
 
 tasks:
   say-hello:
@@ -18,7 +40,6 @@ tasks:
     run:
       container: my-container
       command: echo 'Hello world!'
-  #tasks for running the app
   #install dependecny inside docker container (one time activity)
   install-dep:
     description: Install dependencies needed to build the application
@@ -31,7 +52,26 @@ tasks:
     run:
       environment:
         PORT: 8080
+        POSTGRES_URI: postgres://app:password@db/db
       container: build-fastify-env
       command: npm run start
       ports:
         - 5000:8080
+    dependencies:
+      - db
+  #task for running test cases
+  test-watch:
+    description: test running in watch mode
+    run:
+      container: build-fastify-env
+      environment:
+        PORT: 8080
+        POSTGRES_URI: postgres://app:password@db-test/db
+      command: npm run test:watch
+    dependencies:
+      - db-test
+
+  start-test-db:
+    description: test data base
+    run:
+      container: db-test
