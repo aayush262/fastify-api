@@ -1,0 +1,2 @@
+POSTGRES_URI= your postgres connection
+PORT = your port
