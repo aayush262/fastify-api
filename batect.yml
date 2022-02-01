@@ -70,8 +70,30 @@ tasks:
       command: npm run test:watch
     dependencies:
       - db-test
+  #task for running test in CI mode
+  test-ci:
+    description: running test in CI mode
+    run:
+      container: build-fastify-env
+      environment:
+        PORT: 8080
+        POSTGRES_URI: postgres://app:password@db-test/db
+      command: npm run test
+    dependencies:
+      - db-test
+  #task for running es lint check
+  lint:
+    description: running lint
+    run:
+      container: build-fastify-env
+      command: npm run lint
 
   start-test-db:
     description: test data base
     run:
       container: db-test
+
+  start-dev-db:
+    description: start development database
+    run:
+      container: db

@@ -1,5 +1,5 @@
-const DB_USER = 'postgres';
-const DB_PASSWORD = 'ayoush26';
+const DB_USER = 'app';
+const DB_PASSWORD = 'password';
 
 if (!process.env.POSTGRES_URI) {
   // process.env.POSTGRES_URI = 'postgres://postgres:ayoush26@localhost:5432/db';

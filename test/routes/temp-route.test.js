@@ -1,4 +1,4 @@
-const build = require('./../../src/App');
+const build = require("../../src/App");
 
 let app;
 

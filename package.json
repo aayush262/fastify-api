@@ -4,8 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
+    "test":"CI=true jest --coverage --runInBand --detectOpenHandles",
     "test:watch": "jest --watchAll  --detectOpenHandles --runInBand",
-    "lint": "eslint **/*.js --fix --ignore-pattern node_modules/",
+    "lint-fix": "eslint **/*.js --fix",
+    "lint": "eslint **/*.js ",
     "format": "prettier --write **/*.js"
   },
   "author": "",
@@ -17,6 +19,7 @@
     "dotenv": "^15.0.0",
     "fastify": "^3.27.0",
     "fastify-plugin": "^3.0.1",
+    "fastify-swagger": "^4.13.1",
     "nodemon": "^2.0.15",
     "pg-promise": "^10.11.1"
   },
