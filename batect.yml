@@ -46,6 +46,12 @@ tasks:
     run:
       container: build-fastify-env
       command: npm install
+  #task for running es lint check
+  lint:
+    description: Running Lint
+    run:
+      container: build-fastify-env
+      command: npm run lint
   #task for running the app
   start-server:
     description: Run the application
@@ -81,12 +87,6 @@ tasks:
       command: npm run test
     dependencies:
       - db-test
-  #task for running es lint check
-  lint:
-    description: running lint
-    run:
-      container: build-fastify-env
-      command: npm run lint
 
   start-test-db:
     description: test data base

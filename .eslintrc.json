@@ -17,5 +17,5 @@
     },
     "rules": {
     },
-    "ignorePatterns": ["node_modules/","migrations/"]
+    "ignorePatterns": ["node_modules/","migrations"]
 }
