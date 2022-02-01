@@ -8,15 +8,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Install Fastify Dependencies
-        run: batect install-dep
+        run: ./batect install-dep
 
       - name: Run testcase
-        run: batect test-ci
+        run: ./batect test-ci
 
       - name: Perform Linting
-        run: batect lint
+        run: ./batect lint
