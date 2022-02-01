@@ -19,4 +19,4 @@ jobs:
         run: ./batect test-ci
 
       - name: Perform Linting
-        run: ./batect run lint
+        run: ./batect lint
