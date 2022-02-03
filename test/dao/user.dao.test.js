@@ -1,6 +1,6 @@
 const Fastify = require('fastify');
-const dbPlugin = require('./../../plugin/database');
-const userRepository = require('./../../src/dao/user.dao');
+const dbPlugin = require("../../plugin/database");
+const userRepository = require("../../src/dao/user.dao");
 
 let app;
 

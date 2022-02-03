@@ -1,5 +1,5 @@
-const UserService = require('./../../src/services/user.service');
-const UserRepository = require('./../../src/dao/user.dao');
+const UserService = require("../../src/services/user.service");
+const UserRepository = require("../../src/dao/user.dao");
 
 jest.mock('./../../src/dao/user.dao');
 

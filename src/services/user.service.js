@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const UserRepository = require('./../dao/user.dao');
+const UserRepository = require('../dao/user.dao');
 
 const userService = (fastify) => {
   const userRepository = UserRepository(fastify.db);
@@ -8,9 +8,9 @@ const userService = (fastify) => {
   const getUserById = async (userId) => {
     const user = await userRepository.getUserById(userId);
     const username = [user.first_name, user.middle_name, user.last_name]
-      .filter((name) => name != '')
-      .filter((name) => name != undefined)
-      .filter((name) => name != null)
+      .filter((name) => name !== '')
+      .filter((name) => name !== undefined)
+      .filter((name) => name !== null)
       .join(' ');
     return {
       id: user.id,

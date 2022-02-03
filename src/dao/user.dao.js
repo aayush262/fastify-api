@@ -1,5 +1,5 @@
 const userRepository = (db) => {
-  //Get user by user id;
+  // Get user by user id;
   const getUserById = async (userId) => {
     try {
       return await db.one(`select * from users where id = $1`, [userId]);
@@ -8,7 +8,7 @@ const userRepository = (db) => {
     }
   };
 
-  //save user in db
+  // save user in db
   const saveUser = async (user) => {
     try {
       const { id } = await db.one(
