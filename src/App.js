@@ -1,7 +1,9 @@
 const fastify = require('fastify');
 const db = require('../plugin/database');
-const testRoutes = require("../routes/tempTestRoute");
-const swaggerPg = require("../plugin/swagger");
+const swaggerPg = require('../plugin/swagger');
+
+const testRoutes = require('../routes/tempTestRoute');
+const userRoutes = require('../routes/userRoute');
 
 const build = (options = {}) => {
   const app = fastify(options);
@@ -15,6 +17,10 @@ const build = (options = {}) => {
   // registering routes
   app.register(testRoutes, {
     prefix: '/api/v1/test',
+  });
+
+  app.register(userRoutes, {
+    prefix: '/api/v1/users',
   });
 
   app.get('/', (request, reply) => {
