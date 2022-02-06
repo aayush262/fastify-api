@@ -21,7 +21,6 @@ const userRepository = (db) => {
           user.email,
         ]
       );
-
       return id;
     } catch (err) {
       throw Error('Not valid user data');
