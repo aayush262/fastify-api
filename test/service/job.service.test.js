@@ -47,7 +47,7 @@ describe('Job service', () => {
 
     const { getAllJobs } = JobService({});
 
-    const jobs = getAllJobs(1, 0);
+    const jobs = await getAllJobs(1, 0);
 
     expect(jobs.length).toEqual(1);
     expect(jobs[0].title).toEqual('test');

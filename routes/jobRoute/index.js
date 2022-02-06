@@ -4,8 +4,7 @@ const JobService = require('../../src/services/job.service');
 const { postRequestBody } = require('./job.schema');
 
 const jobRoutes = async (fastify) => {
-  const { getAllJobs, createJob } = JobService(fastify);
-  fastify.get('/', async (request, reply) => {});
+  const { createJob } = JobService(fastify);
 
   fastify.post(
     '/',

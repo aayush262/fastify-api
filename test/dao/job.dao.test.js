@@ -35,6 +35,13 @@ describe('Job Repository', () => {
     app.db.query('delete from jobs');
   });
 
+  it('should fail to fetch jobs', async () => {
+    const { getAllJobs } = JobRepository(app.db);
+
+    const jobs = await getAllJobs(Number.MAX_SAFE_INTEGER, 0);
+    expect(jobs.length).toEqual(0);
+  });
+
   it('should save job when provided with valid job data', async () => {
     const { saveJob } = JobRepository(app.db);
 
@@ -132,12 +139,5 @@ describe('Job Repository', () => {
     const jobs = await getAllJobs(2, 0);
     expect(jobs.length).toEqual(1);
     expect(jobs[0].title).toEqual('React Developer');
-  });
-
-  it('should fail to fetch jobs', async () => {
-    const { getAllJobs } = JobRepository(app.db);
-
-    const jobs = await getAllJobs(Number.MAX_SAFE_INTEGER, 0);
-    expect(jobs.length).toEqual(0);
   });
 });
